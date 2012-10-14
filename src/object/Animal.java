@@ -1,42 +1,38 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) Anton Shekhov
+ * 
  */
 package object;
 
-/**
- *
- * @author Антон
- */
 public class Animal {
-    // Any animal has some size,
-    // speed, agressor or not
+    // each animal has his genom-massive and behaviour massive
+    // look like DNA and peptides in the our organisms
+    // Thus, genom is a massiму with one key and 
+    // two values min and max possible values(constants)
+    // and behavour is two-size massive with 
+    // one key and one variable of propriety of this spieces
+    private double genom [][] = new double [1][2];
+    private double behav [] = new double [2];
     private double rangeSize[] = new double[2];
     private double size;
     private double speed;
     private boolean alive;
     
-   // Constructor of the class
-    public Animal (double rangeSizes[] ){
-        rangeSize = rangeSizes;
-        action.Reproduction burn = new action.Reproduction();
-        size = burn.setValue(rangeSize[0], rangeSize[1]);            
-    }
+   // Constructors of the class
+
     // Constructor for initialization
     public Animal (){
-        rangeSize[0] = -1;
-        rangeSize[1] = -1;
-        size = -1;
+        genom [0][0] = 1;
+        genom [0][1] = 4;
+        action.Reproduction burn = new action.Reproduction();
+        behav [0] = burn.setValue(genom[0][0], genom [0][1]);
     }
     // Constructor for new-borners
-    public Animal (double genotypeX [], double phenotypeX,
-            double genotypeY [], double phenotypeY ) {
+    public Animal (double genomX [][], double behavX[],
+            double genomY [][], double behavY[] ) {
         action.Reproduction burn = new action.Reproduction();
-        double options [][];
-        options = burn.crossingover(genotypeX, phenotypeX, genotypeY, phenotypeY);
-        rangeSize[0] = options [0][0];
-        rangeSize[1] = options [0][1];
-        size = options[1][0];
+        genom = burn.mixDNA(genomX, genomY);
+        behav = burn.translation(genom, behavX, behavY);
     }
     
 
@@ -66,13 +62,19 @@ public class Animal {
     
     // methods thats returns values of class
     public double getSize (){
-        return size;
+        return behav[0];
     }
     public double[] getRangeSize () {
         return rangeSize ;
     }
     public double getSpeed () {
         return speed;
+    }
+    public double[][] getGenom () {
+        return genom;
+    }  
+    public double[] getBehav () {
+        return behav;
     }
     public boolean isAlive() {
         return alive;

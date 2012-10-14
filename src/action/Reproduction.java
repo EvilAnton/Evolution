@@ -9,7 +9,34 @@ package action;
  * Copyright (c) Anton Shekhov 
  */
 public class Reproduction {
+
     
+    // mixDNA mixes two genom lines and return 
+    // a new genom massive
+    public double [][] mixDNA (double genomX[][], double genomY[][]){
+        int length = genomX.length;
+        double newGenom [][] = new double [length][2];
+
+        for (int i = 0; i < length; i++) {
+            newGenom[i] = mixRanges (genomX[i], genomY[i]);
+        }
+        return newGenom;
+    }
+    
+    // this method take genom and set new value, based on the 
+    // range from the genom
+    public double [] translation (double genom[][], 
+            double behavX[], double behavY[] ){
+        int length = genom.length;
+        double behav [] = new double [length];
+        for (int i = 0; i < length; i++) {
+            behav[i] = setValue (genom[i][0], genom[i][1]) +
+                    devOpt(behavX[i], behavY[i]);
+        }      
+        return behav;
+    }
+    
+    // Возвращает случайное число в заданном диапазоне
     public double setValue (double minValue, double maxValue){
         double deviation = Math.random();
         double size = minValue + (deviation * (maxValue - minValue));
@@ -78,27 +105,5 @@ public class Reproduction {
         //System.out.println("Прибавка к весу равна "+deviation);
         return deviation;
     }
-    
-    // Выполнение кроссинговера для двух родительских значений
-    // Возвращает свойства нового объекта
-    public double[][] crossingover (double rangeOptX [], double optX,
-            double rangeOptY [], double optY){
-        // mix two massives by mixRanges
-        double newRange [] = new double [2];
-        newRange = mixRanges (rangeOptX, rangeOptY);
-       
-        // create a new option by setValue
-        // and compute the deviation of option
-        double newOption = (setValue (newRange[0], newRange[1])) +
-                devOpt(optX, optY);
-        // return two-dimensional massive with new genotype and phenotype
-        double options [][] = new double [2][];
-        options [0] = new double [2];
-        options [0][0] = newRange [0];
-        options [0][1] = newRange [1];
-        options [1] = new double [1];
-        options [1][0] = newOption;
-        
-        return options;
-    }
+
 }
