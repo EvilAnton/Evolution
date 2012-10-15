@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012 Anton Shekhov 
- * 
+ *  
  * This class is used genetic methods to 
  * get new generation
  */

@@ -29,7 +29,7 @@ public class Animal {
     // Special variables
     private boolean alive;
     
-    
+     
     // Constructors of the class
 
     // Constructor for initialization - all genom is minus one
